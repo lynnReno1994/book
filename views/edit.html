@@ -1,0 +1,42 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Panel title</h3>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" role="form" ng-submit="new(book)">
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label">书名</label>
+
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="name" ng-model="book.name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="author" class="col-sm-2 control-label">作者</label>
+
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="author" ng-model="book.author">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="press" class="col-sm-2 control-label">出版社</label>
+
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="press" ng-model="book.press">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description" class="col-sm-2 control-label">简介</label>
+
+                <div class="col-sm-8">
+                    <textarea class="form-control" id="description" ng-model="book.description" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">确定</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

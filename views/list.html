@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-lg-1">
+        <button type="button" class="btn btn-primary" ng-click="loadList()">刷新列表</button>
+    </div>
+    <div class="input-group col-lg-4 col-lg-offset-2">
+        <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                Action <span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else</a></li>
+                <li><a href="#">Separated link</a></li>
+            </ul>
+        </div>
+        <input type="text" class="form-control">
+    </div>
+</div>
+
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>书名</th>
+        <th>作者</th>
+        <th>出版社</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="book in books">
+        <td>{{book.id}}</td>
+        <td>《{{book.name}}》</td>
+        <td>{{book.author}}</td>
+        <td>{{book.press}}</td>
+        <td>
+            <a href="#/view/{{book.id}}">查看</a>
+            <a href="#/edit/{{book.id}}">修改</a>
+            <a ng-click="deleteBook($index, book.id)">删除</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
