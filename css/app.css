@@ -1,3 +1,9 @@
 body {
     padding-top: 70px;
 }
+.delete-book{
+    cursor: pointer;
+}
+.filter-input{
+    margin-bottom: 0;
+}

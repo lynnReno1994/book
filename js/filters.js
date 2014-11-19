@@ -1,8 +1,10 @@
 'use strict';
 
-book.filter('fromNow', function () {
-    return function (date) {
-
-    }
+book.filter('paging', function () {
+    return function (input, start) {
+        if (input) {
+            return input.slice(start);
+        }
+    };
 })
 ;

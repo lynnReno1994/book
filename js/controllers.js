@@ -1,27 +1,5 @@
 'use strict';
 
-// Create a module for our core AMail services
-var book = angular.module('book', []);
-
-book.config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.
-        when('/', {
-            controller: 'ListCtrl',
-            templateUrl: 'views/list.html'
-        }).when('/edit/:id', {
-            controller: 'EditCtrl',
-            templateUrl: 'views/edit.html'
-        }).when('/view/:id', {
-            controller: 'ViewCtrl',
-            templateUrl: 'views/view.html'
-        }).when('/new', {
-            controller: 'NewCtrl',
-            templateUrl: 'views/edit.html'
-        }).otherwise({
-            redirectTo: '/'
-        });
-}]);
-
 book.controller('ListCtrl', ['$scope', 'books',
     function ($scope, books) {
         $scope.loadList = function () {
@@ -39,6 +17,51 @@ book.controller('ListCtrl', ['$scope', 'books',
                 $scope.books.splice($index, 1);
             }
         };
+
+        //设置分页
+        //初始化分页参数
+        $scope.itemsPerPage = 5;
+        $scope.currentPage = 0;
+
+        $scope.prevPage = function () {
+            if ($scope.currentPage > 0) {
+                $scope.currentPage--;
+            }
+        };
+
+        $scope.prevPageDisabled = function () {
+            return $scope.currentPage == 0;
+        };
+
+        $scope.pageCount = function () {
+            if ($scope.books) {
+                //向上取整求出总页数
+                return Math.ceil($scope.books.length / $scope.itemsPerPage);
+            } else {
+                return false;
+            }
+        };
+
+        $scope.nextPage = function () {
+            if ($scope.currentPage < $scope.pageCount()) {
+                $scope.currentPage++;
+            }
+        };
+
+        $scope.nextPageDisabled = function () {
+            return $scope.currentPage + 1 == $scope.pageCount();
+        };
+
+        //分页2
+        $scope.pageRepeat = function () {
+            $scope.pageRepeatArray = new Array(0, 1, 2, 3, 4, 5);
+            if ($scope.pageRepeatArray) {
+                console.log($scope.pageRepeatArray);
+            }
+            return $scope.pageRepeatArray;
+        };
+        $scope.pageRepeat();
+        //分页结束
     }
 ]);
 
