@@ -1,12 +1,10 @@
 'use strict';
 
-book.directive('', ['', function () {
+book.directive('myDirective', function () {
     return {
-        restrict: 'A',
-        replace: true,
-        link: function (scope, el, attr) {
-
-        }
-    };
-}])
+        restrict: 'E',
+        controller: 'directiveCtrl',
+        templateUrl: 'views/directive.html'
+    }
+})
 ;

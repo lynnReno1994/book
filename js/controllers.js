@@ -20,7 +20,7 @@ book.controller('ListCtrl', ['$scope', 'books',
 
         //设置分页
         //初始化分页参数
-        $scope.itemsPerPage = 5;
+        $scope.itemsPerPage = 10;
         $scope.currentPage = 0;
 
         $scope.prevPage = function () {
@@ -51,25 +51,14 @@ book.controller('ListCtrl', ['$scope', 'books',
         $scope.nextPageDisabled = function () {
             return $scope.currentPage + 1 == $scope.pageCount();
         };
-
-        //分页2
-        $scope.pageRepeat = function () {
-            $scope.pageRepeatArray = new Array(0, 1, 2, 3, 4, 5);
-            if ($scope.pageRepeatArray) {
-                console.log($scope.pageRepeatArray);
-            }
-            return $scope.pageRepeatArray;
-        };
-        $scope.pageRepeat();
-        //分页结束
     }
 ]);
 
 book.controller('ViewCtrl', ['$scope', '$routeParams', 'books',
     function ($scope, $routeParams, books) {
-        books.get($routeParams.id).then(function (book) {
-            $scope.book = book;
-        });
+        //books.get($routeParams.id).then(function (book) {
+        //    $scope.book = book;
+        //});
     }
 ]);
 
@@ -92,5 +81,13 @@ book.controller('NewCtrl', ['$scope', '$location', 'books',
             books.add(book);
             $location.path('/');
         };
+    }
+]);
+
+book.controller('directiveCtrl', ['$scope', '$routeParams', 'books',
+    function ($scope, $routeParams, books) {
+        books.get($routeParams.id).then(function (book) {
+            $scope.book = book;
+        });
     }
 ]);
