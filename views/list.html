@@ -1,9 +1,8 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
         <div class="row">
-            <div class="input-group col-lg-4 pull-right">
-                <input type="text" class="form-control" placeholder="输入要搜索的书名" ng-model="bookFilter.name">
-
+            <div class="input-group col-lg-4 pull-right bookFilterInput">
+                <input type="text" class="form-control" placeholder="输入要搜索的书名" ng-model="bookFilterdInput">
                 <div class="input-group-addon">书名检索</div>
             </div>
 
@@ -36,7 +35,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="book in books | filter:bookFilter | paging: currentPage*itemsPerPage | limitTo: itemsPerPage">
+            <tr ng-repeat="book in books | bookname:bookFilterdInput | paging: currentPage*itemsPerPage | limitTo: itemsPerPage">
                 <td>{{book.id}}</td>
                 <td>《{{book.name}}》</td>
                 <td>{{book.author}}</td>

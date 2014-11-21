@@ -1,7 +1,7 @@
 'use strict';
 
-book.controller('ListCtrl', ['$scope', 'books',
-    function ($scope, books) {
+book.controller('ListCtrl', ['$scope', '$filter', 'books',
+    function ($scope, $filter, books) {
         $scope.loadList = function () {
             books.all().then(function (books) {
                 $scope.books = books;
@@ -33,10 +33,15 @@ book.controller('ListCtrl', ['$scope', 'books',
             return $scope.currentPage == 0;
         };
 
+        //书名搜索关键词，主要用于更新books数组
+        $scope.bookFilterdInput = '';
+
         $scope.pageCount = function () {
             if ($scope.books) {
+                //根据用户输入来过滤更新数组，主要用来更新页数
+                $scope.updatePage = $filter('bookname')($scope.books, $scope.bookFilterdInput);
                 //向上取整求出总页数
-                return Math.ceil($scope.books.length / $scope.itemsPerPage);
+                return Math.ceil($scope.updatePage.length / $scope.itemsPerPage);
             } else {
                 return false;
             }
@@ -51,11 +56,26 @@ book.controller('ListCtrl', ['$scope', 'books',
         $scope.nextPageDisabled = function () {
             return $scope.currentPage + 1 == $scope.pageCount();
         };
+
+        $scope.$watch('bookFilterdInput', function () {
+            //console.log('change');
+            if ($scope.pageCount()<=$scope.currentPage) {
+                $scope.currentPage = 0;
+            }
+        })
+
+        $scope.$watch('itemsPerPage', function () {
+            //console.log('change');
+            if ($scope.pageCount()<=$scope.currentPage) {
+                $scope.currentPage = 0;
+            }
+        })
     }
 ]);
 
 book.controller('ViewCtrl', ['$scope', '$routeParams', 'books',
     function ($scope, $routeParams, books) {
+        //用指令代替了这块功能，该controller和directiveCtrl完全相同
         //books.get($routeParams.id).then(function (book) {
         //    $scope.book = book;
         //});

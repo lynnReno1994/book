@@ -33,7 +33,7 @@ function getAllBook()
         $db = null;
         echo '{"book": ' . json_encode($book) . '}';
     } catch (PDOException $e) {
-        error_log($e->getMessage(), 3, '../php.log');
+        error_log($e->getMessage(), 3, '../api/php.log');
         echo '{"error":{"text":' . $e->getMessage() . '}}';
     }
 }
@@ -50,7 +50,7 @@ function getBook($id)
         $db = null;
         echo json_encode($book);
     } catch (PDOException $e) {
-        error_log($e->getMessage(), 3, '../php.log');
+        error_log($e->getMessage(), 3, '../api/php.log');
         echo '{"error":{"text":' . $e->getMessage() . '}}';
     }
 }
@@ -72,7 +72,7 @@ function addBook()
         $db = null;
         echo json_encode($book);
     } catch (PDOException $e) {
-        error_log($e->getMessage(), 3, '../php.log');
+        error_log($e->getMessage(), 3, '../api/php.log');
         echo '{"error":{"text":' . $e->getMessage() . '}}';
     }
 }
@@ -95,7 +95,7 @@ function updateBook($id)
         $db = null;
         echo json_encode($book);
     } catch (PDOException $e) {
-        error_log($e->getMessage(), 3, '../php.log');
+        error_log($e->getMessage(), 3, '../api/php.log');
         echo '{"error":{"text":' . $e->getMessage() . '}}';
     }
 }
@@ -110,7 +110,7 @@ function deleteBook($id)
         $stmt->execute();
         $db = null;
     } catch (PDOException $e) {
-        error_log($e->getMessage(), 3, '../php.log');
+        error_log($e->getMessage(), 3, '../api/php.log');
         echo '{"error":{"text":' . $e->getMessage() . '}}';
     }
 }
