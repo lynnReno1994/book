@@ -1,17 +1,12 @@
 <?php
-
 require 'Slim/Slim.php';
-
 $app = new Slim();
-
 $app->get('/book', 'getAllBook');
 $app->get('/book/:id', 'getBook');
 $app->post('/book', 'addBook');
 $app->put('/book/:id', 'updateBook');
 $app->delete('/book/:id', 'deleteBook');
-
 $app->run();
-
 function getConnection()
 {
     $dbhost = "127.0.0.1";
@@ -22,7 +17,6 @@ function getConnection()
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $dbh;
 }
-
 function getAllBook()
 {
     $sql = "SELECT id, name, author, press FROM book ORDER BY id ASC";
@@ -37,7 +31,6 @@ function getAllBook()
         echo '{"error":{"text":' . $e->getMessage() . '}}';
     }
 }
-
 function getBook($id)
 {
     $sql = "SELECT * FROM book WHERE id=:id";
@@ -54,7 +47,6 @@ function getBook($id)
         echo '{"error":{"text":' . $e->getMessage() . '}}';
     }
 }
-
 function addBook()
 {
     $request = Slim::getInstance()->request();
@@ -70,13 +62,12 @@ function addBook()
         $stmt->execute();
         $book->id = $db->lastInsertId();
         $db = null;
-        echo json_encode($book);
+//        echo json_encode($book);
     } catch (PDOException $e) {
         error_log($e->getMessage(), 3, '../api/php.log');
         echo '{"error":{"text":' . $e->getMessage() . '}}';
     }
 }
-
 function updateBook($id)
 {
     $request = Slim::getInstance()->request();
@@ -93,13 +84,12 @@ function updateBook($id)
         $stmt->bindParam("id", $id);
         $stmt->execute();
         $db = null;
-        echo json_encode($book);
+//        echo json_encode($book);
     } catch (PDOException $e) {
         error_log($e->getMessage(), 3, '../api/php.log');
         echo '{"error":{"text":' . $e->getMessage() . '}}';
     }
 }
-
 function deleteBook($id)
 {
     $sql = "DELETE FROM book WHERE id=:id";
@@ -114,5 +104,4 @@ function deleteBook($id)
         echo '{"error":{"text":' . $e->getMessage() . '}}';
     }
 }
-
 ?>

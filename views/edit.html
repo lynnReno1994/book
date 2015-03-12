@@ -3,38 +3,38 @@
         <a type="button" class="btn btn-default" ng-href="#/">返回列表</a>
     </div>
     <div class="panel-body">
-        <form class="form-horizontal" role="form" ng-submit="new(book)">
+        <form name="newBook" class="form-horizontal" role="form" ng-submit="newBook.$valid && new(book)">
             <div class="form-group">
                 <label for="name" class="col-sm-2 control-label">书名</label>
 
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="name" ng-model="book.name">
+                    <input type="text" class="form-control" id="name" ng-model="book.name" required>
                 </div>
             </div>
             <div class="form-group">
                 <label for="author" class="col-sm-2 control-label">作者</label>
 
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="author" ng-model="book.author">
+                    <input type="text" class="form-control" id="author" ng-model="book.author" required>
                 </div>
             </div>
             <div class="form-group">
                 <label for="press" class="col-sm-2 control-label">出版社</label>
 
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="press" ng-model="book.press">
+                    <input type="text" class="form-control" id="press" ng-model="book.press" required>
                 </div>
             </div>
             <div class="form-group">
                 <label for="description" class="col-sm-2 control-label">简介</label>
 
                 <div class="col-sm-8">
-                    <textarea class="form-control" id="description" ng-model="book.description" rows="6"></textarea>
+                    <textarea class="form-control" id="description" ng-model="book.description" rows="6" required></textarea>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary">确定</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="newBook.$invalid">确定</button>
                 </div>
             </div>
         </form>
