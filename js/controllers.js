@@ -6,7 +6,7 @@ book.controller('ListCtrl', ['$scope', '$filter', 'books',
             books.all().then(function (books) {
                 $scope.books = books;
             });
-        };
+    };
 
         //init load data
         $scope.loadList();
@@ -89,6 +89,7 @@ book.controller('EditCtrl', ['$scope', '$routeParams', '$location', 'books',
         });
 
         $scope.new = function (book) {
+            //console.log(book);
             books.update(book);
             $location.path('/');
         };
@@ -97,7 +98,14 @@ book.controller('EditCtrl', ['$scope', '$routeParams', '$location', 'books',
 
 book.controller('NewCtrl', ['$scope', '$location', 'books',
     function ($scope, $location, books) {
+        //$scope.book = {
+        //    name: '1111',
+        //    author: '2222',
+        //    press: '3333',
+        //    description: '555333335555555'
+        //};
         $scope.new = function (book) {
+            console.log(book);
             books.add(book);
             $location.path('/');
         };
